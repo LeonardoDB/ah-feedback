@@ -21,7 +21,7 @@ const verifyJWT = (req, res, next) => {
 
     req.body.companyCode = lastCompany;
 
-     next();
+    // next();
 };
 
 module.exports = verifyJWT;

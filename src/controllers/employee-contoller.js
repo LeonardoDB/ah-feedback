@@ -33,7 +33,7 @@ module.exports = {
                 employees.push(data)
             });
 
-            res.status(200).send({ employees })
+            res.status(200).json(employees);
         } catch (err) {
             console.log(err)
         }
