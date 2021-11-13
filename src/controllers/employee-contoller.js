@@ -3,19 +3,22 @@ const RequestHelper = require('../utils/helpers/request-helper')
 module.exports = { 
     getAll: async (req, res) => {
         try {
+            const { name, offset, limit = 30 } = req.query
+            const { authorization } = req.headers
+
             let filter = ''
-            if (req.query?.name) {
-                filter += `&filter[busca_nome]=${req.query.name}`
-            }
-            
+            if (name) filter += `&filter[busca_nome]=${name}`
+            if (offset) filter += `&offset=${offset}`
+            if (limit) filter += `&limit=${limit}`
+
             const config = {
                 headers: {
                     "Content-type": "application/json",
-                    "Authorization": req.headers.authorization
+                    "Authorization": authorization
                 }
             }
 
-            const result = await RequestHelper.get(`${process.env.url}/api/funcionarios?active=true&limit=30${filter}`, config)
+            const result = await RequestHelper.get(`${process.env.url}/api/funcionarios?active=true${filter}`, config)
             if (!result) {
                 res.status(400).send({
                     error: 'Did not find the employees'
