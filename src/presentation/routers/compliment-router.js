@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const complimentController = require('../../controllers/compliment-controller');
 
-router.get('/getAll', complimentController.getAll);
+router.get('/', complimentController.getAll);
 
-router.get('/getAllById', complimentController.getAllByEmployeeId);
+router.get('/:id', complimentController.getAllByEmployeeId);
 
-router.post('/create', complimentController.create);
+router.post('/', complimentController.create);
 
 module.exports = router;
