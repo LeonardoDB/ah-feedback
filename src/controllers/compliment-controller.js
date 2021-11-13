@@ -16,6 +16,7 @@ module.exports = {
         try {
             const complimentCreated = await ComplimentModel.create(payload);
             res.status(200).json(complimentCreated);
+            console.log('teste')
         } catch (error) {
             console.log(error);
         }
