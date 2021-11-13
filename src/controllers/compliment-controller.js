@@ -3,6 +3,7 @@ const ComplimentModel = require('../models/compliment-model');
 module.exports = {
     getAll: async (req, res) => {
         const allCompliments =  await ComplimentModel.find({}).lean();
+        console.log(allCompliments)
         res.json(allCompliments)
     },
     getAllByEmployeeId: async (req, res) => {
