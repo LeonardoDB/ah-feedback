@@ -20,8 +20,10 @@ app.use('/employee', EmployeeRouter);
 app.use('/feedback', FeedbackRouter);
 app.use('/compliment', ComplimentsRouter);
 
-app.listen(port, () => {
-    console.log(`Server started on port ${port}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(port, () => {
+        console.log(`Server started on port ${port}`);
+    });
+}
 
 module.exports = app

@@ -9,7 +9,7 @@ describe('Feedback Routes', () => {
     });
 
     describe('When create', () => {
-        test.only('Should POST return 401 without basic authentication', async () => {
+        test('Should POST return 401 without basic authentication', async () => {
             const response = await request(app)
                 .post('/feedback')
                 .send(constants.validFeedbackPayload)

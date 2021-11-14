@@ -12,8 +12,6 @@ module.exports = {
     },
     create: async (req, res) => {
         const payload = req.body;
-        console.log(req.body);
-
         try {
             const feedbackCreated = await FeedbackModel.create(payload);
             res.status(200).json(feedbackCreated);
