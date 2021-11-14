@@ -1,29 +1,29 @@
 const request = require('supertest')
 const app = require('../../main/index')
-const ComplimentModel = require('../../models/compliment-model');
+const FeedbackModel = require('../../models/feedback-model');
 const constants = require('./constants')
 
-describe('Compliment Routes', () => {
+describe('Feedback Routes', () => {
     beforeEach(async () => {
-        await ComplimentModel.deleteMany()
+        await FeedbackModel.deleteMany()
     });
 
     describe('When create', () => {
-        test('Should POST return 401 without basic authentication', async () => {
+        test.only('Should POST return 401 without basic authentication', async () => {
             const response = await request(app)
-                .post('/compliment')
-                .send(constants.validComplimentPayload)
+                .post('/feedback')
+                .send(constants.validFeedbackPayload)
 
             expect(response.status).toBe(401)
         })
 
         test('Should POST return 200 when valid parameters are provided', async () => {
             const response = await request(app)
-                .post('/compliment')
+                .post('/feedback')
                 .set('Accept', 'application/json')
                 .set('authorization', constants.validToken)
-                .send(constants.validComplimentPayload)
-                
+                .send(constants.validFeedbackPayload)
+
             expect(response.status).toBe(200)
         })
     })
@@ -31,22 +31,22 @@ describe('Compliment Routes', () => {
     describe('When get', () => {
         test('Should GET return 401 without basic authentication', async () => {
             const response = await request(app)
-                .get('/compliment')
+                .get('/feedback')
 
             expect(response.status).toBe(401)
         })
 
         test('Should GET return 500 invalid basic authentication', async () => {
             const response = await request(app)
-                .get('/compliment')
-                .set('Authorization', 'Bearer valid_token')
+                .get('/feedback')
+                .set('Authorization', constants.invalidToken)
 
             expect(response.status).toBe(500)
         })
 
         test('Should GET return 200 valid basic authentication', async () => {
             const response = await request(app)
-                .get('/compliment')
+                .get('/feedback')
                 .set('Authorization', constants.validToken)
 
             expect(response.status).toBe(200)
@@ -54,15 +54,7 @@ describe('Compliment Routes', () => {
 
         test('Should GET return 401 without basic authentication', async () => {
             const response = await request(app)
-                .get(`/compliment/`)
-
-            expect(response.status).toBe(401)
-        })
-
-        test('Should GET return 200 when valid parameters are provided', async () => {
-            const complimentCreated = await ComplimentModel.create(constants.validComplimentPayload);
-            const response = await request(app)
-                .get(`/compliment/${complimentCreated.toId}`)
+                .get(`/feedback/`)
 
             expect(response.status).toBe(401)
         })
