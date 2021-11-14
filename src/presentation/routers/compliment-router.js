@@ -9,4 +9,6 @@ router.post('/', complimentController.create);
 
 router.patch('/reaction', complimentController.updateReaction);
 
+router.delete('/', complimentController.deleteAll);
+
 module.exports = router;
