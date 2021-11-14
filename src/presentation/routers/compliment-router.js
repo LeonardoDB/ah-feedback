@@ -7,4 +7,6 @@ router.get('/:id', complimentController.getAllByEmployeeId);
 
 router.post('/', complimentController.create);
 
+router.patch('/reaction', complimentController.updateReaction);
+
 module.exports = router;

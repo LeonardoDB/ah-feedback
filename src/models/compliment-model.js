@@ -9,6 +9,8 @@ const complimentSchema = new Schema({
     toId: {type: String, required: true},
     toName: {type: String, required: true},
     content: {type: String, required: true},
+    toId: {type: String, required: true},
+    reactions: {type: Array, default: []}
 })
 
 module.exports = Mongoose.model('compliment', complimentSchema);
