@@ -3,7 +3,7 @@ const FeedbackModel = require('../models/feedback-model');
 module.exports = {
     getAll: async (req, res) => {
         const allFeedbacks =  await FeedbackModel.find({}).lean();
-        res.json(allFeedbacks)
+        res.json(allFeedbacks);
     },
     getAllByEmployeeId: async (req, res) => {
         const { id } = req.params;
@@ -21,4 +21,4 @@ module.exports = {
             console.log(error);
         }
     }
-}
+};

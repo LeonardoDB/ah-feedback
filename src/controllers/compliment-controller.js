@@ -1,6 +1,5 @@
 const ComplimentModel = require('../models/compliment-model');
 const { ObjectId } = require('mongodb');
-const { pluralize } = require('mongoose');
 
 module.exports = {
     getAll: async (req, res) => {
@@ -9,7 +8,7 @@ module.exports = {
         const allCompliments =  await ComplimentModel.find({}).lean();
         allCompliments.forEach(setLiked(id));
 
-        res.json(allCompliments)
+        res.json(allCompliments);
     },
     getAllByEmployeeId: async (req, res) => {
         const { id } = req.body;
@@ -29,10 +28,11 @@ module.exports = {
         }
     },
     updateReaction: async (req, res) => {
-        const {id, employeeId, liked} = req.body;
+        const { id } = req.params;
+        const { employeeId, liked } = req.body;
 
         try {
-            const operation = ({true: '$push', false: '$pull'})[liked]
+            const operation = ({ true: '$push', false: '$pull' })[liked];
             await ComplimentModel.updateOne({_id: ObjectId(id)}, {[operation]: { reactions: employeeId }});
             const result = await ComplimentModel.findOne({_id: ObjectId(id)});
             res.status(200).json(result);
@@ -42,14 +42,14 @@ module.exports = {
     },
     deleteAll: async (req, res) => {
         try {
-           await ComplimentModel.deleteMany({});
+            await ComplimentModel.deleteMany({});
         } catch (error) {
             console.log(error);
         }
     }
-}
+};
 
 const setLiked = (id) => (compliment) => {
-    const liked = compliment.reactions.includes(id)
-    compliment.liked = liked
-}
+    const liked = compliment.reactions.includes(id);
+    compliment.liked = liked;
+};

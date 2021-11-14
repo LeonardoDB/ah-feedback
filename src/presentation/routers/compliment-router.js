@@ -7,7 +7,7 @@ router.get('/:id', complimentController.getAllByEmployeeId);
 
 router.post('/', complimentController.create);
 
-router.patch('/reaction', complimentController.updateReaction);
+router.patch('/:id/reaction', complimentController.updateReaction);
 
 router.delete('/', complimentController.deleteAll);
 
