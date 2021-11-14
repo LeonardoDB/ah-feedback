@@ -9,7 +9,7 @@ app.use(express.json());
 
 const middleWares = require('../presentation/middlewares/auth-middleware');
 
-//app.use(middleWares);
+app.use(middleWares);
 
 const EmployeeRouter = require('../presentation/routers/api/employee-router');
 const FeedbackRouter = require('../presentation/routers/feedback-router');
