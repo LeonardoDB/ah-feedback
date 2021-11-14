@@ -11,4 +11,4 @@ const complimentSchema = new Schema({
     reactions: {type: Array}
 })
 
-module.exports = Mongoose.model('complimentSchema', complimentSchema);
+module.exports = Mongoose.model('compliment', complimentSchema);
