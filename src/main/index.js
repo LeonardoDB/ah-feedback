@@ -21,5 +21,7 @@ app.use('/feedback', FeedbackRouter);
 app.use('/compliment', ComplimentsRouter);
 
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Server started on port ${port}`);
 });
+
+module.exports = app 

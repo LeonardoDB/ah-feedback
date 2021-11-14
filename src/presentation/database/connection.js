@@ -1,7 +1,7 @@
 const Mongoose = require('mongoose');
 
 /* istanbul ignore next */
-const URL = 'mongodb+srv://matrixTeam:ssffdd66@cluster0.nedvb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const URL = process.env.NODE_ENV !== 'test' ? process.env.MONGO_URL : process.env.MONGO_URL_TEST
 
 const connectDatabase = () => {
     const connectionOptions = {  useNewUrlParser: true };
