@@ -43,6 +43,7 @@ module.exports = {
     deleteAll: async (req, res) => {
         try {
            await ComplimentModel.deleteMany({});
+           res.json({success: true})
         } catch (error) {
             console.log(error);
         }
