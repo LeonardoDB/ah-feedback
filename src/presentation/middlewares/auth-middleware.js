@@ -2,7 +2,7 @@
 
 const jwtDecoder = require('jwt-decode');
 
-const verifyJWT = (req, res) => {
+const verifyJWT = (req, res, next) => {
     const token = req.headers.authorization;
 
     if (!token) {
@@ -20,6 +20,8 @@ const verifyJWT = (req, res) => {
     if(tokenHasExpired) res.status(401).json({message: 'Token has expired'});
 
     req.body.companyCode = lastCompany;
+
+    next();
 };
 
 module.exports = verifyJWT;
