@@ -1,6 +1,6 @@
 'use strict';
 
-const jwtDecoder = require("jwt-decode");
+const jwtDecoder = require('jwt-decode');
 
 const verifyJWT = (req, res, next) => {
     const token = req.headers.authorization;
@@ -9,11 +9,11 @@ const verifyJWT = (req, res, next) => {
         return res.status(401).json({
             message: 'Missing Authorization Header',
         });
-    };
+    }
 
     const { exp, user: { lastCompany} } = jwtDecoder(token);
 
-    if(!exp) res.status(401).json({message: 'Invalid Token'})
+    if(!exp) res.status(401).json({message: 'Invalid Token'});
 
     const tokenHasExpired = new Date() > new Date(exp * 1000);
 

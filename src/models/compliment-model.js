@@ -1,4 +1,4 @@
-const Mongoose = require("mongoose");
+const Mongoose = require('mongoose');
 
 const Schema = Mongoose.Schema;
 
@@ -10,6 +10,6 @@ const complimentSchema = new Schema({
     toName: {type: String, required: true},
     content: {type: String, required: true},
     reactions: {type: Array, default: []}
-})
+});
 
 module.exports = Mongoose.model('compliment', complimentSchema);

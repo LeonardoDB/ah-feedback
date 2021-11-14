@@ -1,4 +1,4 @@
-const Mongoose = require("mongoose");
+const Mongoose = require('mongoose');
 
 const Schema = Mongoose.Schema;
 
@@ -12,6 +12,6 @@ const feedbackSchema = new Schema({
     companyCode: {type: String},
     keepDoing: {type: Boolean},
     needImprovement: {type: Boolean}
-})
+});
 
 module.exports = Mongoose.model('feedback-model', feedbackSchema);
