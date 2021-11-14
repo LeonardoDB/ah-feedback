@@ -16,7 +16,7 @@ module.exports = {
 
         const allComplimentsById = await ComplimentModel.find({toId: id});
         allComplimentsById.forEach(setLiked(id));
-        
+
         res.json(allComplimentsById);
     },
     create: async (req, res) => {
@@ -30,12 +30,19 @@ module.exports = {
     },
     updateReaction: async (req, res) => {
         const {id, employeeId, liked} = req.body;
-        
+
         try {
             const operation = ({true: '$push', false: '$pull'})[liked]
             await ComplimentModel.updateOne({_id: ObjectId(id)}, {[operation]: { reactions: employeeId }});
             const result = await ComplimentModel.findOne({_id: ObjectId(id)});
             res.status(200).json(result);
+        } catch (error) {
+            console.log(error);
+        }
+    },
+    deleteAll: async (req, res) => {
+        try {
+           await ComplimentModel.deleteMany({});
         } catch (error) {
             console.log(error);
         }
